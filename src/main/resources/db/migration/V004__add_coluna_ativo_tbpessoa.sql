@@ -1,0 +1,1 @@
+alter table pessoa add column ativo boolean not null;

@@ -47,6 +47,13 @@ public class LancamentoService {
 		lancamentoRepository.save(lancamento);
 		
 	}
+	public void atualizarLancamento(Long id) {
+		
+		Lancamento lancamento = lancamentoRepository.getOne(id);
+		
+		lancamentoRepository.save(lancamento);
+		
+	}
 	
 	public void deletar(Long id) {
 		
