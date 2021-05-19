@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.algamoney.model.Pessoa;
+import br.com.algamoney.repository.PessoaRepository;
 import br.com.algamoney.service.PessoaService;
 
 @CrossOrigin
@@ -27,6 +29,9 @@ public class PessoaController {
 	
 	@Autowired
 	private PessoaService pessoaService;
+	
+	@Autowired
+	private PessoaRepository pessoaRepository;
 	
 	@GetMapping
 	public ResponseEntity<?> buscar() {
@@ -73,5 +78,14 @@ public class PessoaController {
 		pessoaService.salvar(pessoaBuscada);
 		
 		return pessoaBuscada;
+	}
+	
+	@GetMapping("/nome")
+	public ResponseEntity<?> buscarPorNome(@RequestParam String nome){
+		
+		List<Pessoa> pessoas = pessoaRepository.findByNomeContaining(nome);
+		
+		return ResponseEntity.ok(pessoas);
+		
 	}
 }

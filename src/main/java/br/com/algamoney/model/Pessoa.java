@@ -1,10 +1,11 @@
 package br.com.algamoney.model;
 
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.sun.istack.NotNull;
@@ -23,18 +24,33 @@ public class Pessoa {
 	@NotNull
 	private String nome;
 	
+	@ManyToOne
+	@JoinColumn(name = "cidade_id")
+	private Cidade cidade;
 	
 	private String logradouro;
 	private String numero;
 	private String bairro;
 	private String cep;
-	private String cidade;
-	private String estado;
+	
+	
+
+
 	private String complemento;
 	
 	private Boolean ativo;
 	
 	
+
+
+	public Cidade getCidade() {
+		return cidade;
+	}
+
+
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
+	}
 
 
 	public String getLogradouro() {
@@ -77,24 +93,6 @@ public class Pessoa {
 	}
 
 
-	public String getCidade() {
-		return cidade;
-	}
-
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-
-
-	public String getEstado() {
-		return estado;
-	}
-
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
 
 
 	public String getComplemento() {
